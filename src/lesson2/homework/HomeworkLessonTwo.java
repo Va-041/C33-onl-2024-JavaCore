@@ -229,7 +229,7 @@ class HomeworkLessonTwo {
             }
 
             if (currentTask > 1) {
-                System.out.print("\n" + optionNumber++ + ". Go back to the previous task"); // 3. Go back to the previous task
+                System.out.print("\n" + optionNumber++ + ". To the previous task"); // 3. Go back to the previous task
             }
 
             System.out.print("\n" + optionNumber + ". Exit"); // 4. Exit
@@ -306,6 +306,7 @@ class HomeworkLessonTwo {
                         validChoice = true;
                     } else if (choiceAction == 3) {
                         // Выход из программы
+                        System.out.println("\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n\n");
                         System.out.println("Exiting...");
                         inputChoice.close();
                         System.exit(0);
