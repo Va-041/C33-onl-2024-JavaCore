@@ -264,14 +264,6 @@ public class HomeworkLessonThree {
                             System.out.println("\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n\n");
                             getResultTaskThree();
                             break;
-                        case 4:
-                            System.out.println("\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n\n");
-                            getResultTaskFour();
-                            break;
-                        case 5:
-                            System.out.println("\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n\n");
-                            getResultTaskWithAsterisk();
-                            break;
                     }
                     validChoice = true;
 

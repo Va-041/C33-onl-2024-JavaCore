@@ -117,7 +117,7 @@ class HomeworkLessonTwo {
     }
 
     public static void getResultTaskWithAsterisk() {
-        System.out.println("= = = = = = = = Task with asterisk = = = = = = = = =\n");
+        System.out.println("= = = = = = = = Task  with asterisk = = = = = = = =\n");
 
         int valueA = getValidInt("Please, enter value A: ", 1);
         int valueB = getValidInt("Please, enter value B: ", 1);
@@ -333,10 +333,6 @@ class HomeworkLessonTwo {
                         case 4:
                             System.out.println("\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n\n");
                             getResultTaskFour();
-                            break;
-                        case 5:
-                            System.out.println("\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n\n");
-                            getResultTaskFive();
                             break;
                     }
                     validChoice = true;
