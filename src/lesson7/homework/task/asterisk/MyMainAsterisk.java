@@ -1,7 +1,5 @@
 package lesson7.homework.task.asterisk;
 
-import java.util.Objects;
-
 public class MyMainAsterisk {
 
     public static void main(String[] args) {
