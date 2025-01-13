@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Zoo {
 
     public static void main(String[] args) {
-//        makeZoo();
+        makeZoo();
         forTaskWithAsterisk();
     }
 

@@ -10,7 +10,7 @@ public class Cat extends PredatorAnimal {
     // но как тогда сделать экземпляр Cat? Ведь если не будет его, то и работать нам будет впринципе
     // не с чем (вызывать методы еды и голоса без самого Барсика не вайб, хочу сделать Барсика!)
     // в самом классе то могу, а вот вне его - нет (смотреть пункт 1)
-    Cat catik = new Cat("Anasi", "Black", 1, "Female", false);
+//    Cat catik = new Cat("Anasi", "Black", 1, "Female", false);
 
     // шо я делаю: делаю отдельный статический метод специально только для создания экземпляра Cat и создаю в нём барсика
     public static Cat createBarsik(String name, String color, int age, String gender, boolean hasFur) {
