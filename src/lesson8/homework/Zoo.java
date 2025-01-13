@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class Zoo {
 
     public static void main(String[] args) {
-        makeZoo();
+//        makeZoo();
+        forTaskWithAsterisk();
     }
 
     public static void makeZoo() {
@@ -19,7 +20,6 @@ public class Zoo {
             System.out.println(animal);
             animal.getVoice();
         }
-
         feedAnimal(animals);
     }
 
@@ -73,7 +73,8 @@ public class Zoo {
         System.out.print("Do you want to feed another animal? (y/n): ");
         String feedAnother = inputChoice.next();
         if (feedAnother.equalsIgnoreCase("N") || feedAnother.equalsIgnoreCase("n")) {
-            System.exit(0); // Завершение программы
+            forTaskWithAsterisk();
+            System.exit(0);
         } else if (feedAnother.equalsIgnoreCase("Y") || feedAnother.equalsIgnoreCase("y")) {
             feedAnimal(animals);
         }
@@ -106,7 +107,7 @@ public class Zoo {
                         System.out.print("\nEnter your choice: ");
                         int newChoice = inputChoice.nextInt();
                         if (newChoice == 4) {
-                            System.exit(0); // Завершение программы
+                            System.exit(0);
                         } else if (newChoice >= 1 && newChoice <= 3) {
                             feedAnimal(animals);
                         } else {
@@ -115,11 +116,32 @@ public class Zoo {
                         break;
                     case 2:
                         System.out.println(":(");
-                        System.exit(0); // Завершение программы
+                        forTaskWithAsterisk();
+                        System.exit(0);
                 }
             }
         } while (choice < 1 || choice > 2);
     }
+
+
+    public static void forTaskWithAsterisk() {
+        System.out.println("\n============ This is task with asterisk ============");
+
+        // задание со звёздочкой, делаю на примере котика, а не собачки, потому что лень дописывать в основную прогу))
+
+        // 1) если я сделал конструктор класса Cat приватным то видим что не можем создать объект Cat в другом классе
+        // Animal Barsik = new Cat("Barsik_krutoi", "Orange mandarinka", 5, "Muzjik", true);
+        // 2) В классе Cat создал отдельный статический метод для создания экземпляра класса Cat, использую его(потому
+        // что публик статики вызывать можно
+        Cat Barsik = Cat.createBarsik("Barsik_krutoi", "Orange mandarinka", 5, "Muzjik", true);
+        // 3) Вызываю паблик статик методы голоса и кушать, смотреть в классе Cat!
+        System.out.println("\n\t------------\n\tVoice method\n\t------------\n");
+        Cat.getBarsikVoice(Barsik);
+
+        System.out.println("\n\n\t-----------\n\tFood method\n\t-----------\n");
+        Cat.getBarsikFood(Barsik);
+    }
+
 
     public static Scanner getScannerInput() {
         return new Scanner(System.in);

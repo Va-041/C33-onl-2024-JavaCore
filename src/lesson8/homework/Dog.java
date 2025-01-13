@@ -8,7 +8,7 @@ public class Dog extends PredatorAnimal {
 
     @Override
     public void getVoice() {
-        System.out.println("\t\tThe Dog is BARKS!");
+        System.out.println("\t\tThe Dog BARKS!");
     }
 
     @Override

@@ -71,6 +71,47 @@ abstract class Animal {
         System.out.println(getAnimalType() + " is eating " + food);
     }
 
+
+    public void getFoodForAsterisk() {
+        Scanner inputChoice = getScannerInput();
+        int choice;
+
+        do {
+            String[] Food = {"Meat", "Fish", "Grass", "Roots"};
+            System.out.println("\t\tWhat kind of food do you want to feed " + getAnimalType() + "? (its Barsik)");
+            System.out.println("\t\t1. " + Food[0]);
+            System.out.println("\t\t2. " + Food[1]);
+            System.out.println("\t\t3. " + Food[2]);
+            System.out.println("\t\t4. " + Food[3]);
+            System.out.println("\t\t5. Exit");
+            System.out.print("\n\t\tEnter your choice: ");
+
+            while (!inputChoice.hasNextInt()) {
+                System.out.print("Invalid input. Please choose 1-5: "); // проверка на ввод 1 5 а не других символов
+                inputChoice.next();
+            }
+            choice = inputChoice.nextInt();
+
+            if (choice < 1 || choice > 5) {
+                System.out.println("Invalid choice. Please choose 1-5"); // проверка на ввод цифр от 1 до 5
+            } else if (choice == 5) {
+                System.exit(0);
+            } else {
+                String selectedFood = Food[choice - 1];
+                feed(selectedFood);
+
+                System.out.print("\nDo you want to feed this animal again? (y/n): ");
+                String feedAgain = inputChoice.next();
+                if (feedAgain.equalsIgnoreCase("Y") || feedAgain.equalsIgnoreCase("y")) {
+                    getFood(); // повторный вызов метода для того же животного
+                } else {
+                    System.out.println("Goodbye");
+                    System.exit(0);
+                }
+            }
+        } while (choice < 1 || choice > 5);
+    }
+
     @Override
     public String toString() {
         return "\n----------------------------------------------\n" +
@@ -84,5 +125,4 @@ abstract class Animal {
     public Scanner getScannerInput() {
         return new Scanner(System.in);
     }
-
 }

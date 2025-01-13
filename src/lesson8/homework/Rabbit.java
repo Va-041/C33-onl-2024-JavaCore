@@ -8,7 +8,7 @@ public class Rabbit extends HerbivoresAnimal {
 
     @Override
     public void getVoice() {
-        System.out.println("\t\tThe Rabbit is SQUEAKING!");
+        System.out.println("\t\tThe Rabbit SQUEAKING!");
     }
 
     @Override

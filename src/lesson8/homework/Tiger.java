@@ -8,7 +8,7 @@ public class Tiger extends PredatorAnimal {
 
     @Override
     public void getVoice() {
-        System.out.println("\t\tThe Tiger is GROWLS!");
+        System.out.println("\t\tThe Tiger GROWLS!");
     }
 
     @Override
