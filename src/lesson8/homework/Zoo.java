@@ -123,7 +123,6 @@ public class Zoo {
         } while (choice < 1 || choice > 2);
     }
 
-
     public static void forTaskWithAsterisk() {
         System.out.println("\n============ This is task with asterisk ============");
 
@@ -141,7 +140,6 @@ public class Zoo {
         System.out.println("\n\n\t-----------\n\tFood method\n\t-----------\n");
         Cat.getBarsikFood(Barsik);
     }
-
 
     public static Scanner getScannerInput() {
         return new Scanner(System.in);
