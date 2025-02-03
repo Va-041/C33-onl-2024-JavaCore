@@ -1,14 +1,11 @@
-package lesson12.homework.taskWithAsterisk;
+package lesson14.homework.BasicTask;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FilenameFilter;
+import java.io.*;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
-public class FindInformation {
+public class FindLongestWord {
 
-    public static void startTaskWithAsterisk() {
+    public static void startBasicTask() {
 
         System.out.println("\n=============== Task with Asterisk ===============");
         getFileForRead();
@@ -30,7 +27,7 @@ public class FindInformation {
                 continue;
             }
 
-            //   src\\lesson12\\homework\\taskWithAsterisk\\data
+            //   src\\lesson14\\homework\\BasicTask\\data
             directory = new File(directoryPath);
             txtFiles = directory.list(new FilenameFilter() {
                 public boolean accept(File dir, String name) {
@@ -41,7 +38,8 @@ public class FindInformation {
             if (txtFiles != null && txtFiles.length > 0) {
                 isValidPath = true;
             } else {
-                System.out.println("No .txt files found in the specified directory or the path is invalid. Please try again.");
+                System.out.println("No .txt files found in the specified directory or the path is invalid. " +
+                        "Please try again.");
             }
         }
 
@@ -63,18 +61,20 @@ public class FindInformation {
                     System.out.println("\nReading file " + txtFiles[choice-1] + " ...\n\nFile text:\n");
                     readFile(directory.getAbsolutePath() + File.separator + txtFiles[choice - 1]);
 
-                    String[] lines = readFileIntoArray(directory.getAbsolutePath() + File.separator + txtFiles[choice - 1]);
+                    String[] lines = readFileIntoArray(directory.getAbsolutePath() + File.separator +
+                            txtFiles[choice - 1]);
                     isValidChoice = true;
+
                     // построчный вывод, пользователю его видеть не надо
                     //for (String line : lines) {
                     //    System.out.println(line);
                     //}
-                    // вызов метода на проверку строк с нужным нам регексом
-                    String[][] validatedInfo = validateLines(lines);
-                    // вызов метода показа инфы
-                    displayFoundInfo(validatedInfo);
+                    String longestWord = findLongestWord(lines);
+                    writeLongestWordToFile(longestWord, "src\\lesson14\\homework\\BasicTask\\data");
+
                 } else {
-                    System.out.println("Invalid choice. Please enter a number corresponding to the file or '0' to go back.");
+                    System.out.println("Invalid choice. Please enter a number corresponding to the file or" +
+                            " '0' to go back.");
                 }
             } else {
                 System.out.println("Invalid input. Please enter a number.");
@@ -107,74 +107,27 @@ public class FindInformation {
         return lines;
     }
 
-    public static String[][] validateLines(String[] lines) {
-
-        String docNumberRegex = "\\d{4}-\\d{4}-\\d{2}";
-        String emailRegex = "^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$";
-        String phoneNumberRegex = "\\+\\(\\d{2}\\)\\d{7}";
-
-        Pattern docNumberPattern = Pattern.compile(docNumberRegex);
-        Pattern emailPattern = Pattern.compile(emailRegex);
-        Pattern phoneNumberPattern = Pattern.compile(phoneNumberRegex);
-
-        String[] docNumbers = new String[lines.length];
-        String[] emails = new String[lines.length];
-        String[] phoneNumbers = new String[lines.length];
-
-        int docCount = 0;
-        int emailCount = 0;
-        int phoneCount = 0;
-
-        for (String line : lines) {
-            if (docNumberPattern.matcher(line).find()) {
-                docNumbers[docCount++] = line;
-            }
-            if (emailPattern.matcher(line).find()) {
-                emails[emailCount++] = line;
-            }
-            if (phoneNumberPattern.matcher(line).find()) {
-                phoneNumbers[phoneCount++] = line;
+    public static String findLongestWord(String[] words) {
+        String longestWord = "";
+        for (String word : words) {
+            if (word.length() > longestWord.length()) {
+                longestWord = word;
             }
         }
-
-        String[] finalDocNumbers = new String[docCount];
-        String[] finalEmails = new String[emailCount];
-        String[] finalPhoneNumbers = new String[phoneCount];
-
-        System.arraycopy(docNumbers, 0, finalDocNumbers, 0, docCount);
-        System.arraycopy(emails, 0, finalEmails, 0, emailCount);
-        System.arraycopy(phoneNumbers, 0, finalPhoneNumbers, 0, phoneCount);
-
-        return new String[][]{
-                finalDocNumbers,
-                finalEmails,
-                finalPhoneNumbers
-        };
+        return longestWord;
     }
 
-    public static void displayFoundInfo(String[][] validatedInfo) {
-
-        System.out.println();
-        if (validatedInfo[0].length == 0) {
-            System.out.println("Document number: not found.");
-        }
-        if (validatedInfo[1].length == 0) {
-            System.out.println("Email: not found.");
-        }
-        if (validatedInfo[2].length == 0) {
-            System.out.println("Phone number: not found.");
-        }
-
-        for (String docNumber : validatedInfo[0]) {
-            System.out.println("Document number: " + docNumber);
-        }
-        for (String email : validatedInfo[1]) {
-            System.out.println("Email: " + email);
-        }
-        for (String phoneNumber : validatedInfo[2]) {
-            System.out.println("Phone number: " + phoneNumber);
+    public static void writeLongestWordToFile(String longestWord, String directoryPath) {
+        File file = new File(directoryPath, "the_longest_word.txt");
+        try (FileWriter writer = new FileWriter(file)) {
+            writer.write(longestWord);
+            System.out.println("\nThe longest word \"" + longestWord + "\" has been written to the file " +
+                    "'the_longest_word.txt' in the directory: " + directoryPath);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
 
     public static void repeatMethod() {
 
@@ -187,11 +140,11 @@ public class FindInformation {
 
             switch (input) {
                 case "Y":
-                    startTaskWithAsterisk();
+                    startBasicTask();
                     validInput = true;
                     break;
                 case "N":
-                    System.out.println("Exiting the program. Goodbye!");
+                    System.out.println("\nExiting the program. Goodbye!");
                     System.exit(0);
                     break;
                 default:
